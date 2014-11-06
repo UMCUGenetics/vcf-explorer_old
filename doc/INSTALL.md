@@ -13,7 +13,7 @@ and
 ```sh
   export PROOTDIR=/data/md3200cog-lv3/vcf_explorer
   ~/opt/bin/proot-x86_64 -b $PROOTDIR/nix-mnt/nix-1.7-x86_64-linux/:/nix
-  $PROOTDIR/nix-mnt/nix-1.7-x86_64-linux$ nix-env -i couchdb
+  nix-env -i couchdb
   cd /nix/var/local/db
   couchdb -n -A /nix/etc/couchdb -b -p /nix/var/local/db/couchdb.pid
 ```
