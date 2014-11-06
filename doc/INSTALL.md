@@ -21,6 +21,8 @@ and
 You need to change the nix/store paths in the default.ini after copying the etc/ dir to
 /nix/etc/couchdb.
 
-Note that the server runs in Proot, so may suffer some performance degradation.
-
+Note that the server runs in Proot, so may suffer some performance degradation. It
+can be installed using a native Nix build, also described on
+[Nix with
+Proot](https://nixos.org/wiki/How_to_install_nix_in_home_%28on_another_distribution%29).
 
