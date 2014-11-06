@@ -11,7 +11,7 @@ Proot](https://nixos.org/wiki/How_to_install_nix_in_home_%28on_another_distribut
 and
 
 ```sh
-  PROOTDIR=/data/md3200cog-lv1/wgs11
+  export PROOTDIR=/data/md3200cog-lv3/vcf_explorer
   ~/opt/bin/proot-x86_64 -b $PROOTDIR/nix-mnt/nix-1.7-x86_64-linux/:/nix
   $PROOTDIR/nix-mnt/nix-1.7-x86_64-linux$ nix-env -i couchdb
   cd /nix/var/local/db
@@ -26,3 +26,10 @@ can be installed using a native Nix build, also described on
 [Nix with
 Proot](https://nixos.org/wiki/How_to_install_nix_in_home_%28on_another_distribution%29).
 
+For example, to build couchdb from source using 8 parallel builds
+
+```sh
+  mkdir $PROOTDIR/tmp
+  mkdir $PROOTDIR/nix-local
+  env TMPDIR=$PROOTDIR/tmp NIX_STORE_DIR=$PROOTDIR/nix-local nix-env -i couchdb -j 8
+```
