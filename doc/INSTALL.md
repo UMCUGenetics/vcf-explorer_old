@@ -11,10 +11,15 @@ Proot](https://nixos.org/wiki/How_to_install_nix_in_home_%28on_another_distribut
 and
 
 ```sh
+  screen -S couchdb
   export PROOTDIR=/data/md3200cog-lv3/vcf_explorer
   ~/opt/bin/proot-x86_64 -b $PROOTDIR/nix-mnt/nix-1.7-x86_64-linux/:/nix
   nix-env -i couchdb
   cd /nix/var/local/db
+  rm couchdb.pid couchdb.stderr couchdb.stdout
+  # Foreground
+  couchdb -n -A /nix/etc/couchdb -p /nix/var/local/db/couchdb.pid
+  # Or background
   couchdb -n -A /nix/etc/couchdb -b -p /nix/var/local/db/couchdb.pid
 ```
 
@@ -32,4 +37,13 @@ For example, to build couchdb from source using 8 parallel builds
   mkdir $PROOTDIR/tmp
   mkdir $PROOTDIR/nix-local
   env TMPDIR=$PROOTDIR/tmp NIX_STORE_DIR=$PROOTDIR/nix-local nix-env -i couchdb -j 8
+```
+
+Apart from getting the dirs and port right in the default.ini and/or local.ini
+files, you also need to enable cors.
+
+```sh
+  enable_cors = true
+[cors]
+  origins = *
 ```
