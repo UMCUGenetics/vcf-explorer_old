@@ -21,6 +21,8 @@ and
   couchdb -n -A /nix/etc/couchdb -p /nix/var/local/db/couchdb.pid
   # Or background
   couchdb -n -A /nix/etc/couchdb -b -p /nix/var/local/db/couchdb.pid
+  # Background with respawn
+  couchdb -n -r 30 -A /nix/etc/couchdb -b -p /nix/var/local/db/couchdb.pid
 ```
 
 You need to change the nix/store paths in the default.ini after copying the etc/ dir to
