@@ -6,7 +6,7 @@ Install CouchDB 1.6.1 or later.
 
 ## Install without root access
 
-The quick and dirty way is the PRoot install with nixpkgs. Install [Nix with
+The quick way without having root privileges is the PRoot install with nixpkgs. Install [Nix with
 Proot](https://nixos.org/wiki/How_to_install_nix_in_home_%28on_another_distribution%29)
 and
 
@@ -25,7 +25,7 @@ and
   couchdb -n -r 30 -A /nix/etc/couchdb -b -p /nix/var/local/db/couchdb.pid
 ```
 
-You need to change the nix/store paths in the default.ini after copying the etc/ dir to
+Change the nix/store paths in the default.ini after copying the etc/ dir to
 /nix/etc/couchdb.
 
 Note that the server runs in Proot, so may suffer some performance degradation. It
@@ -42,10 +42,30 @@ For example, to build couchdb from source using 8 parallel builds
 ```
 
 Apart from getting the dirs and port right in the default.ini and/or local.ini
-files, you also need to enable cors.
+files, you also need to enable cors and optionally jsonp in the ini file to
+be able to access the service from the browser:
 
 ```sh
+[http]
+  port = 8080
+  bind_address = ext_ip
+  allow_jsonp = true
   enable_cors = true
 [cors]
   origins = *
+```
+
+Finally we use a CRON job to restart the service, just in case it stops:
+
+```sh
+1,16,31,46 * * * * $HOME/couchdb_CRON.sh 1>> $HOME/cron.log 2>> $HOME/cron.err &
+```
+
+The script couchbd_CRON.sh contains
+
+```sh
+#! /bin/bash
+
+export PROOTDIR=/data/md3200cog-lv3/vcf_explorer
+~/opt/bin/proot-x86_64 -b $PROOTDIR/nix-mnt/nix-1.7-x86_64-linux/:/nix $HOME/.nix-profile/bin/couchdb -n -r 30 -A /nix/etc/couchdb -b -p /nix/var/local/db/couchdb.pid
 ```
