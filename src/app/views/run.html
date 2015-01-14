@@ -1,0 +1,38 @@
+<h1 class="page-header">Run ID: {{ ::runKey }}</h1>
+<div class="row">
+  <div class="col-xs-2">
+    <div class="form-group">
+      Number of variants:
+      <select ng-model="varLimit" class="form-control">
+        <option value=10>10</option>
+        <option value=20>20</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-3">
+    Search by position: <input type="text" class="form-control" ng-model="search.pos"/>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr>
+      <th>Chr</th>
+      <th>Pos</th>
+      <th>Ref</th>
+      <th>Alt</th>
+      <th ng-repeat="sample in runData.HEADER.samples">{{ sample }}</th>
+    </tr>
+    <tr dir-paginate="variant in runData.BODY | filter:search | itemsPerPage: varLimit">
+      <td>{{variant.chr}}</td>
+      <td>{{variant.pos}}</td>
+      <td>{{variant.ref}}</td>
+      <td>{{variant.alt}}</td>
+      <td ng-repeat="sample in variant.samples">{{sample.gt}}</td>
+    </tr>
+  </table>
+</div>
+<dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>

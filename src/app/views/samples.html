@@ -1,0 +1,13 @@
+<h1 class="page-header">Samples</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr>
+      <th>Run Name</th>
+      <th>Sample Name</th>
+    </tr>
+    <tr ng-repeat="sample in samples.rows">
+      <td><a href="/#/run/{{sample.key}}">{{sample.key}}</a></td>
+      <td><a href="/#/sample_vars/{{sample.value}}">{{sample.value}}</a></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,35 @@
+<h1 class="page-header">{{ ::sampleKey }}</h1>
+<div class="row">
+  <div class="col-xs-2">
+    <div class="form-group">
+      Number of variants:
+      <select ng-model="varLimit" class="form-control">
+        <option value=10>10</option>
+        <option value=20>20</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr>
+      <th>Chr</th>
+      <th>Pos</th>
+      <th>Ref</th>
+      <th>Alt</th>
+      <th>GT</th>
+      <th>GQ</th>
+      <th>GD</th>
+    </tr>
+    <tr dir-paginate="variant in variants.rows | itemsPerPage: varLimit">
+      <td>{{::variant.value[0]}}</td>
+      <td>{{::variant.value[1]}}</td>
+      <td>{{::variant.value[2]}}</td>
+      <td>{{::variant.value[3]}}</td>
+      <td>{{::variant.value[4]}}</td>
+      <td>{{::variant.value[5]}}</td>
+      <td>{{::variant.value[6]}}</td>
+    </tr>
+  </table>
+</div>
+<dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
