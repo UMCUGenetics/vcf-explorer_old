@@ -1,10 +1,13 @@
-# INSTALLATION
+# CouchDB
 
-## Install CouchDB
+## Installation
 
 Install CouchDB 1.6.1 or later. 
 
-## Install without root access
+### Install with root acces
+See: http://docs.couchdb.org/en/1.6.1/install/unix.html
+
+### Install without root access
 
 The quick way without having root privileges is the PRoot install with nixpkgs. Install [Nix with
 Proot](https://nixos.org/wiki/How_to_install_nix_in_home_%28on_another_distribution%29)
@@ -43,17 +46,7 @@ For example, to build couchdb from source using 8 parallel builds
 
 Apart from getting the dirs and port right in the default.ini and/or local.ini
 files, you also need to enable cors and optionally jsonp in the ini file to
-be able to access the service from the browser:
-
-```sh
-[http]
-  port = 8080
-  bind_address = ext_ip
-  allow_jsonp = true
-  enable_cors = true
-[cors]
-  origins = *
-```
+be able to access the service from the browser. See the settings section for the exact settings. 
 
 Finally we use a CRON job to restart the service, just in case it stops:
 
@@ -68,4 +61,16 @@ The script couchbd_CRON.sh contains
 
 export PROOTDIR=/data/md3200cog-lv3/vcf_explorer
 ~/opt/bin/proot-x86_64 -b $PROOTDIR/nix-mnt/nix-1.7-x86_64-linux/:/nix $HOME/.nix-profile/bin/couchdb -n -r 30 -A /nix/etc/couchdb -b -p /nix/var/local/db/couchdb.pid
+```
+
+### Settings
+default.ini and/or local.ini and/or _utils/config.html via the browser.
+```sh
+[http]
+  port = 8080
+  bind_address = external_ip
+  allow_jsonp = true
+  enable_cors = true
+[cors]
+  origins = *
 ```
