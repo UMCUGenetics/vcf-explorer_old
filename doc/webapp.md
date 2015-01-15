@@ -1,19 +1,21 @@
 # vcf-explorer web app
 
+## Requirements
+- [nodejs](http://nodejs.org/)
+- [bower](http://bower.io/)
+- [grunt](http://gruntjs.com/)
+
 ### Install development environment
 
 ```sh
+  cd /path/to/vcf-explorer/src
   npm install
-
-```
-
-## Install dependencies
-```sh
   bower install
 ```
 
-## Run development server
+### Run the development server
 
 ```sh
+  cd /path/to/vcf-explorer/src
   grunt serve
 ```
