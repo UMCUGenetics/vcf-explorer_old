@@ -64,7 +64,7 @@ export PROOTDIR=/data/md3200cog-lv3/vcf_explorer
 ```
 
 ### Settings
-default.ini and/or local.ini and/or _utils/config.html via the browser.
+Setting can be adjusted by editing default.ini or local.ini or _utils/config.html via the browser.
 ```sh
 [http]
   port = 8080
@@ -73,4 +73,10 @@ default.ini and/or local.ini and/or _utils/config.html via the browser.
   enable_cors = true
 [cors]
   origins = *
+```
+### Upload a vcf.json file to couchdb
+Using curl we can make a new database and upload json files to couchdb.
+```sh
+curl -X PUT http://external_ip:8080/vcf
+curl -X PUT http://external_ip:8080/vcf/datasetID/ -d @in.json
 ```
