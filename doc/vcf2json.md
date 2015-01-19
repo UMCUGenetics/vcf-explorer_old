@@ -4,7 +4,7 @@ Using bio-vcf and an erb template we can convert vcf files to json files.
 
 ## Requirements
 
-- [bio-vcf](http://nodejs.org/)
+- [bio-vcf](https://github.com/pjotrp/bioruby-vcf)
 
 ## Run bio-vcf
 
