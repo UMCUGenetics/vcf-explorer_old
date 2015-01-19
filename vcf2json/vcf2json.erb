@@ -1,0 +1,38 @@
+=HEADER
+<% require 'json' %>
+{
+"HEADER":
+    {
+	"options": <%= options.to_h.to_json %>,
+	"files": <%= ARGV %>,
+	"version": "<%= BIOVCF_VERSION %>",
+	"columns": <%= header.column_names.to_json %>,
+	"samples": <%= header.samples.to_json %>,
+	"meta": <%= header.meta.to_json %>
+    },
+"BODY":
+    [
+=BODY
+    <% sample_num = 0 %>
+	{
+	    "chr": "<%= rec.chrom %>",
+	    "pos": <%= rec.pos %>,
+	    "ref": "<%= rec.ref %>",
+	    "alt": "<%= rec.alt[0] %>",
+	    "samples": {
+	    <% rec.each_sample do |sample| %>
+		<% sample_name = header.samples[sample_num] %>
+		<% if not sample.empty? %>
+		<%= (sample_num!=0 ? "," : "" ) %>
+		"<%= sample_name %>": {
+		    <% header.meta['FORMAT'].each_key do |key| %>
+		    "<%= key %>": <%= sample[key].to_json %><%= (key==header.meta['FORMAT'].keys.last ? "" : "," ) %>
+		    <% end %>
+		}
+		<% sample_num += 1 %>
+		<% end %>
+		<% end %>
+	    }
+	},
+=FOOTER
+]}
