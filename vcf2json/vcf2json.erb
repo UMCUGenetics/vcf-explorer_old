@@ -13,15 +13,16 @@
 "BODY":
     [
 =BODY
-    <% sample_num = 0 %>
 	{
 	    "chr": "<%= rec.chrom %>",
 	    "pos": <%= rec.pos %>,
 	    "ref": "<%= rec.ref %>",
 	    "alt": "<%= rec.alt[0] %>",
 	    "samples": {
+	    <% sample_num = 0 %>
+	    <% sample_i = 0 %>
 	    <% rec.each_sample do |sample| %>
-		<% sample_name = header.samples[sample_num] %>
+		<% sample_name = header.samples[sample_i] %>
 		<% if not sample.empty? %>
 		<%= (sample_num!=0 ? "," : "" ) %>
 		"<%= sample_name %>": {
@@ -31,6 +32,7 @@
 		}
 		<% sample_num += 1 %>
 		<% end %>
+		<% sample_i += 1 %>
 		<% end %>
 	    }
 	},
