@@ -2,7 +2,7 @@
 
 ## Installation
 
-Install CouchDB 1.6.1 or later. 
+Install CouchDB 1.6.1 or later.
 
 ### Install with root acces
 See: http://docs.couchdb.org/en/1.6.1/install/unix.html
@@ -46,7 +46,7 @@ For example, to build couchdb from source using 8 parallel builds
 
 Apart from getting the dirs and port right in the default.ini and/or local.ini
 files, you also need to enable cors and optionally jsonp in the ini file to
-be able to access the service from the browser. See the settings section for the exact settings. 
+be able to access the service from the browser. See the settings section for the exact settings.
 
 Finally we use a CRON job to restart the service, just in case it stops:
 
@@ -73,6 +73,8 @@ Setting can be adjusted by editing default.ini or local.ini or _utils/config.htm
   enable_cors = true
 [cors]
   origins = *
+[couchdb]
+  os_process_timeout = 50000
 ```
 ### Upload a vcf.json file to couchdb
 Using curl we can make a new database and upload json files to couchdb.
