@@ -12,7 +12,7 @@
   npm install
   bower install
 ```
-### CP and edit config.default.js
+### Copy and edit config.default.js
 
 ```sh
   cp src/app/scripts/config.default.js src/app/scripts/config.js
