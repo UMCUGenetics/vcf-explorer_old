@@ -2,9 +2,9 @@
 
 var services = angular.module('vcfExplorerServices', ['ngResource']);
 
-services.service('CouchDB', function($resource){
-  var couchdbViews = $resource('http://localhost:5984/vcf/_design/:design/_view/:view');
-  var couchdbDocs = $resource('http://localhost:5984/vcf/:doc');
+services.service('CouchDB', function($resource, appConfig){
+  var couchdbViews = $resource(appConfig.couchdbURL + '/' + appConfig.couchdbDatabase + '/_design/:design/_view/:view');
+  var couchdbDocs = $resource(appConfig.couchdbURL + '/' + appConfig.couchdbDatabase + '/:doc');
 
   this.getSamples = function() {
     return couchdbViews.get({'design':'default','view':'samples'});
