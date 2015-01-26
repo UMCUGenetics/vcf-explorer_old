@@ -1,4 +1,14 @@
 <h1 class="page-header">{{ ::runKey }}</h1>
+
+<h2>Run Info</h2>
+<div class="row">
+  <dl class="dl-horizontal">
+    <dt>Ref Genome</dt><dd>{{runData.HEADER.meta.reference}}</dd>
+    <dt>GATKCommandLine</dt><dd>{{runData.HEADER.meta.GATKCommandLine}}</dd>
+  </dl>
+</div>
+
+<h2>Variants</h2>
 <div class="row">
   <div class="col-xs-2">
     <div class="form-group">
@@ -35,3 +45,12 @@
   </table>
 </div>
 <dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+
+<h2>Conversion Info</h2>
+<div class="row">
+  <dl class="dl-horizontal">
+    <dt>Date</dt><dd>{{runData.HEADER.options.date}}</dd>
+    <dt>bio-vcf version</dt><dd>{{runData.HEADER.options.version}}</dd>
+    <dt>vcf2json template</dt><dd>{{runData.HEADER.options.template}}</dd>
+  </dl>
+</div>
