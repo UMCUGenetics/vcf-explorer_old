@@ -2,7 +2,7 @@
 // /_design/default/_view/samples
 
 function(doc) {
-  for (sample in doc.HEADER.samples){
-    emit(doc._id, doc.HEADER.samples[sample]);
+  for each(sample in doc.HEADER.samples){
+    emit(doc._id, sample);
   }
 }
