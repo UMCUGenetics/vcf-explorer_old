@@ -18,12 +18,14 @@ controllers.controller('SampleVarsCtrl',
   function ($scope, $routeParams, CouchDB) {
     $scope.sampleKey = $routeParams.sampleKey;
     $scope.variants = CouchDB.getSampleVars($scope.sampleKey);
-    $scope.varLimit = 10;
+    $scope.varLimit = 25;
+    $scope.minGQ = 0;
+    $scope.minDP = 0;
   });
 
 controllers.controller('Run',
   function ($scope, $routeParams, CouchDB) {
     $scope.runKey = $routeParams.runKey;
     $scope.runData = CouchDB.getRun($scope.runKey);
-    $scope.varLimit = 10;
+    $scope.varLimit = 25;
   });

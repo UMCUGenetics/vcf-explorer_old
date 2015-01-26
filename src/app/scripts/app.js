@@ -19,7 +19,8 @@ var vcfExplorerApp = angular.module('vcfExplorerApp', [
     'vcfExplorerApp.development',
     //'vcfExplorerApp.production',
     'vcfExplorerControllers',
-    'vcfExplorerServices'
+    'vcfExplorerServices',
+    'vcfExplorerFilters'
   ]);
 
 vcfExplorerApp.config(

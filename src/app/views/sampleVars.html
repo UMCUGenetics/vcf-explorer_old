@@ -1,35 +1,48 @@
 <h1 class="page-header">{{ ::sampleKey }}</h1>
 <div class="row">
-  <div class="col-xs-2">
-    <div class="form-group">
-      Number of variants:
-      <select ng-model="varLimit" class="form-control">
-        <option value=10>10</option>
-        <option value=20>20</option>
+  <div class="col-md-8">
+    <form class="form-inline">
+      <div class="form-group"><label>Chr: </label><input type="text" class="form-control" size="2" ng-model="search.value.chr"></div>
+      <div class="form-group"><label>Pos: </label><input type="text" class="form-control" size="15" ng-model="search.value.pos"></div>
+
+      <div class="form-group"><label>GT: </label><input type="text" class="form-control" size="5" ng-model="search.value.data.GT"></div>
+      <div class="form-group"><label>GQ >= </label><input type="text" class="form-control" size="2" ng-model="minGQ"></div>
+      <div class="form-group"><label>DP >= </label><input type="text" class="form-control" size="2" ng-model="minDP"></div>
+    </form>
+  </div>
+
+  <div class="col-md-2">
+    <div class="form-group"><label for="variantsNumber">Number of variants:</label>
+      <select ng-model="varLimit" class="form-inline">
+        <option value=25>25</option>
+        <option value=50>50</option>
+        <option value=100>100</option>
       </select>
     </div>
   </div>
+
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <tr>
-      <th>Chr</th>
-      <th>Pos</th>
-      <th>Ref</th>
-      <th>Alt</th>
-      <th>GT</th>
-      <th>GQ</th>
-      <th>GD</th>
-    </tr>
-    <tr dir-paginate="variant in variants.rows | itemsPerPage: varLimit">
-      <td>{{::variant.value[0]}}</td>
-      <td>{{::variant.value[1]}}</td>
-      <td>{{::variant.value[2]}}</td>
-      <td>{{::variant.value[3]}}</td>
-      <td>{{::variant.value[4]}}</td>
-      <td>{{::variant.value[5]}}</td>
-      <td>{{::variant.value[6]}}</td>
-    </tr>
-  </table>
+
+
+
+<div class="row">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <th>Chr</th>
+        <th>Pos</th>
+        <th>Ref</th>
+        <th>Alt</th>
+        <th ng-repeat="(key, value) in variants.rows[0].value.data">{{key}}</th>
+      </tr>
+      <tr dir-paginate="variant in variants.rows | filter:search | varFilter:minGQ:minDP | itemsPerPage: varLimit">
+        <td>{{variant.value.chr}}</td>
+        <td>{{variant.value.pos}}</td>
+        <td>{{variant.value.ref}}</td>
+        <td>{{variant.value.alt}}</td>
+        <td ng-repeat="data in variant.value.data">{{data}}</td>
+      </tr>
+    </table>
+  </div>
+  <dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
 </div>
-<dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
