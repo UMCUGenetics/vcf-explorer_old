@@ -11,12 +11,6 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-3">
-    Search by position: <input type="text" class="form-control" ng-model="search.pos"/>
-  </div>
-</div>
-
 <div class="table-responsive">
   <table class="table table-bordered">
     <tr>
@@ -26,13 +20,16 @@
       <th>Alt</th>
       <th ng-repeat="sample in runData.HEADER.samples">{{ sample }}</th>
     </tr>
-    <tr dir-paginate="variant in runData.BODY | filter:search | itemsPerPage: varLimit">
+    <tr dir-paginate="variant in runData.BODY | itemsPerPage: varLimit">
       <td>{{variant.chr}}</td>
       <td>{{variant.pos}}</td>
       <td>{{variant.ref}}</td>
       <td>{{variant.alt}}</td>
-      <td ng-repeat="sample in runData.HEADER.samples">{{ variant.samples[sample] }}</th>
-
+      <td ng-repeat="sample in runData.HEADER.samples">
+        <ul class="list-inline">
+          <li ng-repeat="(key, value) in variant.samples[sample]">{{key}} : {{value}}</li>
+        </ul>
+      </td>
     </tr>
   </table>
 </div>

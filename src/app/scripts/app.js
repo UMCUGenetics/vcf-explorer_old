@@ -16,8 +16,8 @@ var vcfExplorerApp = angular.module('vcfExplorerApp', [
 
     'CornerCouch',
     'angularUtils.directives.dirPagination',
-
     'vcfExplorerApp.development',
+    //'vcfExplorerApp.production',
     'vcfExplorerControllers',
     'vcfExplorerServices'
   ]);
