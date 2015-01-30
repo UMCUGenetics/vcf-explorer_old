@@ -14,6 +14,10 @@ services.service('CouchDB', function($resource, appConfig){
     return couchdbViews.get({'design':'default','view':'sample_vars','key':'"'+sampleKey+'"'});
   };
 
+  this.getRuns = function() {
+    return couchdbViews.get({'design':'default','view':'runs'});
+  };
+
   this.getRun = function(runKey) {
     return couchdbDocs.get({'doc':runKey});
   };

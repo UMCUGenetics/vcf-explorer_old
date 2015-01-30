@@ -1,0 +1,15 @@
+<h1 class="page-header">Runs</h1>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tr>
+      <th>Run Name</th>
+      <th>Samples</th>
+      <th>Date</th>
+    </tr>
+    <tr ng-repeat="run in runs.rows">
+      <td><a href="/#/run/{{run.key}}">{{run.key}}</a></td>
+      <td>{{runs.rows[0].value.samples}}</td>
+      <td>{{runs.rows[0].value.options.date}}</td>
+    </tr>
+  </table>
+</div>

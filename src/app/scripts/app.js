@@ -34,9 +34,13 @@ vcfExplorerApp.config(
         templateUrl: 'views/sampleVars.html',
         controller: 'SampleVarsCtrl'
       })
+      .when('/runs',{
+        templateUrl: 'views/runs.html',
+        controller: 'RunsCtrl'
+      })
       .when('/run/:runKey', {
         templateUrl: 'views/run.html',
-        controller: 'Run'
+        controller: 'RunCtrl'
       })
       .otherwise({
         redirectTo: '/samples'

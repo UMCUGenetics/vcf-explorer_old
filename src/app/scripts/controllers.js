@@ -12,7 +12,7 @@ var controllers = angular.module('vcfExplorerControllers', []);
 controllers.controller('SamplesCtrl',
   function ($scope, CouchDB) {
     $scope.samples = CouchDB.getSamples();
-  });
+});
 
 controllers.controller('SampleVarsCtrl',
   function ($scope, $routeParams, CouchDB) {
@@ -21,11 +21,16 @@ controllers.controller('SampleVarsCtrl',
     $scope.varLimit = 25;
     $scope.minGQ = 0;
     $scope.minDP = 0;
-  });
+});
 
-controllers.controller('Run',
+controllers.controller('RunsCtrl',
+  function ($scope, CouchDB) {
+    $scope.runs = CouchDB.getRuns();
+});
+
+controllers.controller('RunCtrl',
   function ($scope, $routeParams, CouchDB) {
     $scope.runKey = $routeParams.runKey;
     $scope.runData = CouchDB.getRun($scope.runKey);
     $scope.varLimit = 25;
-  });
+});
