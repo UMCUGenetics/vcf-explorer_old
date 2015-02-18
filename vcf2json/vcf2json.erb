@@ -18,6 +18,11 @@
 	    "pos": <%= rec.pos %>,
 	    "ref": "<%= rec.ref %>",
 	    "alt": "<%= rec.alt[0] %>",
+	    "info": {
+		<% rec.info.fields.each do |field| %>
+		"<%= field %>": <%= rec.info[field].to_json %><%= (field==rec.info.fields.last ? "" : "," ) %>
+		<% end %>
+	    },
 	    "samples": {
 	    <% sample_num = 0 %>
 	    <% sample_i = 0 %>
