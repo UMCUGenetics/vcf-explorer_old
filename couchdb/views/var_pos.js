@@ -6,7 +6,7 @@ function(doc) {
     pos = doc.BODY[pos_i];
     for (pos_sample_i in pos.samples) {
       pos_sample = pos.samples[pos_sample_i]
-      emit([pos.chr,pos.pos,pos.alt],1);
+      emit([pos.chr,pos.pos,pos.ref,pos.alt],1);
     }
   }
 }
