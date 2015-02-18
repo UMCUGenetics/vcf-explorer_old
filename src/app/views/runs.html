@@ -1,6 +1,6 @@
 <h1 class="page-header">Runs</h1>
 <div class="table-responsive">
-  <table class="table table-bordered">
+  <table class="table table-bordered table-condensed">
     <tr>
       <th>Run Name</th>
       <th>Samples</th>
@@ -8,7 +8,11 @@
     </tr>
     <tr ng-repeat="run in runs.rows">
       <td><a href="/#/run/{{run.key}}">{{run.key}}</a></td>
-      <td>{{runs.rows[0].value.samples}}</td>
+      <td>
+        <ul class="list-inline">
+          <li ng-repeat="sample in runs.rows[0].value.samples">{{sample}}</li>
+        </ul>
+      </td>
       <td>{{runs.rows[0].value.options.date}}</td>
     </tr>
   </table>

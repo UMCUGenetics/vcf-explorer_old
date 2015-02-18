@@ -1,13 +1,5 @@
 <h1 class="page-header">{{ ::runKey }}</h1>
 
-<h2>Run Info</h2>
-<div class="row">
-  <dl class="dl-horizontal">
-    <dt>Ref Genome</dt><dd>{{runData.HEADER.meta.reference}}</dd>
-    <dt>GATKCommandLine</dt><dd>{{runData.HEADER.meta.GATKCommandLine}}</dd>
-  </dl>
-</div>
-
 <h2>Variants</h2>
 <div class="row">
   <div class="col-xs-2">
@@ -23,13 +15,14 @@
 </div>
 
 <div class="table-responsive">
-  <table class="table table-bordered">
+  <table class="table table-bordered table-condensed">
     <tr>
       <th>Chr</th>
       <th>Pos</th>
       <th>Ref</th>
       <th>Alt</th>
       <th ng-repeat="sample in runData.HEADER.samples">{{ sample }}</th>
+      <th ng-repeat="info in infoFields">{{ info }}</th>
     </tr>
     <tr dir-paginate="variant in runData.BODY | itemsPerPage: varLimit">
       <td>{{variant.chr}}</td>
@@ -41,6 +34,7 @@
           <li ng-repeat="(key, value) in variant.samples[sample]">{{key}} : {{value}}</li>
         </ul>
       </td>
+      <td ng-repeat="info in infoFields">{{variant.info[info]}}</td>
     </tr>
   </table>
 </div>
@@ -52,5 +46,13 @@
     <dt>Date</dt><dd>{{runData.HEADER.options.date}}</dd>
     <dt>bio-vcf version</dt><dd>{{runData.HEADER.options.version}}</dd>
     <dt>vcf2json template</dt><dd>{{runData.HEADER.options.template}}</dd>
+  </dl>
+</div>
+
+<h2>Run Info</h2>
+<div class="row">
+  <dl class="dl-horizontal">
+    <dt>Ref Genome</dt><dd>{{runData.HEADER.meta.reference}}</dd>
+    <dt>GATKCommandLine</dt><dd>{{runData.HEADER.meta.GATKCommandLine}}</dd>
   </dl>
 </div>

@@ -2,12 +2,21 @@
 
 var filters = angular.module('vcfExplorerFilters', []);
 
-filters.filter('varFilter',
+function filterRow(item, filterValues) {
+  for(var index in filterValues){
+    if( item.value.data[index] < filterValues[index] ){
+      return true;
+    }
+  }
+  return false;
+}
+
+filters.filter('varTableFilter',
   function() {
-    return function(items, minGQ, minDP) {
+    return function(items, filterValues) {
       var filtered = [];
       angular.forEach(items, function(item) {
-        if( item.value.data.GQ >= minGQ && item.value.data.DP >= minDP) {
+        if( ! filterRow(item, filterValues)){
           filtered.push(item);
         }
       });

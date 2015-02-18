@@ -6,8 +6,8 @@
       <div class="form-group"><label>Pos: </label><input type="text" class="form-control" size="15" ng-model="search.value.pos"></div>
 
       <div class="form-group"><label>GT: </label><input type="text" class="form-control" size="5" ng-model="search.value.data.GT"></div>
-      <div class="form-group"><label>GQ >= </label><input type="text" class="form-control" size="2" ng-model="minGQ"></div>
-      <div class="form-group"><label>DP >= </label><input type="text" class="form-control" size="2" ng-model="minDP"></div>
+      <div class="form-group"><label>GQ >= </label><input type="text" class="form-control" size="2" ng-model="filterValues.GQ"></div>
+      <div class="form-group"><label>DP >= </label><input type="text" class="form-control" size="2" ng-model="filterValues.DP"></div>
     </form>
   </div>
 
@@ -35,7 +35,7 @@
         <th>Alt</th>
         <th ng-repeat="(key, value) in variants.rows[0].value.data">{{key}}</th>
       </tr>
-      <tr dir-paginate="variant in variants.rows | filter:search | varFilter:minGQ:minDP | itemsPerPage: varLimit">
+      <tr dir-paginate="variant in variants.rows | filter:search | varTableFilter:filterValues | itemsPerPage: varLimit">
         <td>{{variant.value.chr}}</td>
         <td>{{variant.value.pos}}</td>
         <td>{{variant.value.ref}}</td>
