@@ -2,7 +2,18 @@
 
 <h2>Variants</h2>
 <div class="row">
-  <div class="col-xs-2">
+  <div class="col-md-12">
+    <form class="form-inline">
+      <div class="form-group"><label>Chr: </label><input type="text" class="form-control" size="2" ng-model="search.value.chr"></div>
+      <div class="form-group"><label>Pos: </label><input type="text" class="form-control" size="15" ng-model="search.value.pos"></div>
+      <div class="form-group" ng-repeat="(key, value) in filterValues">
+        <label>{{key}} >= </label><input type="text" class="form-control" size="2" ng-model="filterValues[key]">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
     <div class="form-group">
       Number of variants:
       <select ng-model="varLimit" class="form-inline">
@@ -24,7 +35,7 @@
       <th ng-repeat="sample in runData.HEADER.samples">{{ sample }}</th>
       <th ng-repeat="info in infoFields">{{ info }}</th>
     </tr>
-    <tr dir-paginate="variant in runData.BODY | itemsPerPage: varLimit">
+    <tr dir-paginate="variant in runData.BODY | runVarTableFilter:filterValues | itemsPerPage: varLimit">
       <td>{{variant.chr}}</td>
       <td>{{variant.pos}}</td>
       <td>{{variant.ref}}</td>
