@@ -36,5 +36,5 @@ controllers.controller('RunCtrl',
     $scope.varLimit = 25;
 
     $scope.infoFields = ['AC','AF','AN','DP','FS','MLEAC','MLEAF','MQ','MQ0','QD'];
-    $scope.filterValues = {'AC':0,'AF':0,'AN':0,'DP':5,'FS':0,'MLEAC':0,'MLEAF':0,'MQ':0,'MQ0':0,'QD':0};
+    $scope.filterValues = {'AC':0,'AF':0,'AN':0,'DP':0,'FS':0,'MLEAC':0,'MLEAF':0,'MQ':0,'MQ0':0,'QD':0};
 });

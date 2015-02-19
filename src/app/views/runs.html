@@ -10,10 +10,10 @@
       <td><a href="/#/run/{{run.key}}">{{run.key}}</a></td>
       <td>
         <ul class="list-inline">
-          <li ng-repeat="sample in runs.rows[0].value.samples">{{sample}}</li>
+          <li ng-repeat="sample in run.value.samples">{{sample}}</li>
         </ul>
       </td>
-      <td>{{runs.rows[0].value.options.date}}</td>
+      <td>{{run.value.date}}</td>
     </tr>
   </table>
 </div>

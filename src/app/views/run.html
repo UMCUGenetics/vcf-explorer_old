@@ -41,8 +41,10 @@
       <td>{{variant.ref}}</td>
       <td>{{variant.alt}}</td>
       <td ng-repeat="sample in runData.HEADER.samples">
-        <ul class="list-inline">
-          <li ng-repeat="(key, value) in variant.samples[sample]">{{key}} : {{value}}</li>
+        <ul class="list-inline" ng-if="variant.samples[sample].GT">
+          <li>GT: {{variant.samples[sample].GT}}</li>
+          <li>GQ: {{variant.samples[sample].GQ}}</li>
+          <li>DP: {{variant.samples[sample].DP}}</li>
         </ul>
       </td>
       <td ng-repeat="info in infoFields">{{variant.info[info]}}</td>
