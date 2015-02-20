@@ -1,7 +1,17 @@
 <h1 class="page-header">{{ ::runKey }}</h1>
 
+<div class="row" ng-if="!runData.BODY">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        <span>Loading data</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <h2>Variants</h2>
-<div class="row">
+<div class="row" ng-if="runData.BODY">
   <div class="col-md-12">
     <form class="form-inline">
       <div class="form-group"><label>Chr: </label><input type="text" class="form-control" size="2" ng-model="search.value.chr"></div>
@@ -25,7 +35,7 @@
   </div>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" ng-if="runData.BODY">
   <table class="table table-bordered table-condensed">
     <tr>
       <th>Chr</th>
