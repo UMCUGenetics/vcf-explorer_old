@@ -12,5 +12,5 @@ function(doc) {
 // /_design/default/_view/header
 
 function(doc) {
-  emit(doc._id, doc.HEADER[0])
+  emit(doc._id, doc.HEADER)
 }
