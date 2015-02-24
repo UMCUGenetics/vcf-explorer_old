@@ -17,9 +17,9 @@ controllers.controller('SamplesCtrl',
 controllers.controller('SampleVarsCtrl',
   function ($scope, $routeParams, CouchDB) {
     $scope.sampleKey = $routeParams.sampleKey;
-    var variants = CouchDB.getSampleVars($scope.sampleKey);
+    var data = CouchDB.getSampleVars($scope.sampleKey);
 
-    $scope.variants = variants;
+    $scope.data = data;
     $scope.varLimit = 25;
     $scope.filterValues = {'GQ':0,'DP':0};
 });
